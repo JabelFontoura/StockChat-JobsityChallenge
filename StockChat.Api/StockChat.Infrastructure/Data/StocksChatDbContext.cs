@@ -1,0 +1,17 @@
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+
+namespace StockChat.Infrastructure.Data
+{
+    public class StocksChatDbContext : IdentityDbContext
+    {
+        public StocksChatDbContext(DbContextOptions options) : base(options)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+    }
+}
