@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -38,12 +39,14 @@ namespace StockChatBot.Worker.Producer
         {
             _hubConnection.StartAsync();
             RegisterRabbitMqListener();
+            _logger.LogInformation("RabbitMq Listener registered.");
             return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
             _connection.Close();
+            _logger.LogInformation("Worker stopping at: {time}", DateTimeOffset.Now);
             return Task.CompletedTask;
         }
 
@@ -70,6 +73,7 @@ namespace StockChatBot.Worker.Producer
         private void SendToHub(string user, string message)
         {
             _hubConnection.InvokeAsync("SendMessage", user, message);
+            _logger.LogInformation($"Worker sengind message to hub: {message}");
         }
     }
 }

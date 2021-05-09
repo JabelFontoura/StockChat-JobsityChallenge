@@ -15,15 +15,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StockChat", "StockChat", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StockChatBot", "StockChatBot", "{8A02A56C-A271-43B2-8CF1-10D5C029F449}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChatBot.Worker.Consumer", "StockChatBot.Worker\StockChatBot.Worker.Consumer.csproj", "{DE785FF7-2A15-4ED2-AC71-2DA092D05DBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockChatBot.Worker.Consumer", "StockChatBot.Worker\StockChatBot.Worker.Consumer.csproj", "{DE785FF7-2A15-4ED2-AC71-2DA092D05DBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChatBot.Infrastructure", "StockChatBot.Infrastructure\StockChatBot.Infrastructure.csproj", "{D2AE8542-9B1E-4A80-ACF0-5082CCA2139B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockChatBot.Infrastructure", "StockChatBot.Infrastructure\StockChatBot.Infrastructure.csproj", "{D2AE8542-9B1E-4A80-ACF0-5082CCA2139B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChatBot.Domain", "StockChatBot.Domain\StockChatBot.Domain.csproj", "{45318DE5-CD97-4B9F-B9AC-129A6E43FADA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockChatBot.Domain", "StockChatBot.Domain\StockChatBot.Domain.csproj", "{45318DE5-CD97-4B9F-B9AC-129A6E43FADA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChatBot.Worker.Producer", "StockChatBot.Worker.Producer\StockChatBot.Worker.Producer.csproj", "{7D40A326-91B3-4127-821F-A6FEF9B06B94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockChatBot.Worker.Producer", "StockChatBot.Worker.Producer\StockChatBot.Worker.Producer.csproj", "{7D40A326-91B3-4127-821F-A6FEF9B06B94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChatBot.Application", "StockChatBot.Application\StockChatBot.Application.csproj", "{8CE742C7-AB2F-472A-9B01-1E2B5A845DA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockChatBot.Application", "StockChatBot.Application\StockChatBot.Application.csproj", "{8CE742C7-AB2F-472A-9B01-1E2B5A845DA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChat.Application.Test", "StockChat.Application.Test\StockChat.Application.Test.csproj", "{F2AB62E6-D230-434D-A465-23EED6D0949B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{8CE742C7-AB2F-472A-9B01-1E2B5A845DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CE742C7-AB2F-472A-9B01-1E2B5A845DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CE742C7-AB2F-472A-9B01-1E2B5A845DA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2AB62E6-D230-434D-A465-23EED6D0949B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2AB62E6-D230-434D-A465-23EED6D0949B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2AB62E6-D230-434D-A465-23EED6D0949B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2AB62E6-D230-434D-A465-23EED6D0949B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{45318DE5-CD97-4B9F-B9AC-129A6E43FADA} = {8A02A56C-A271-43B2-8CF1-10D5C029F449}
 		{7D40A326-91B3-4127-821F-A6FEF9B06B94} = {8A02A56C-A271-43B2-8CF1-10D5C029F449}
 		{8CE742C7-AB2F-472A-9B01-1E2B5A845DA9} = {8A02A56C-A271-43B2-8CF1-10D5C029F449}
+		{F2AB62E6-D230-434D-A465-23EED6D0949B} = {F3B851E8-CBFE-4253-9BA4-2A5296F743AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5567508A-4217-4D14-880C-E2827BFD914A}

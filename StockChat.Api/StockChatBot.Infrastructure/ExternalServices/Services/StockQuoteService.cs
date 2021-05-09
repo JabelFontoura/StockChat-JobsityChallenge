@@ -1,6 +1,7 @@
 ﻿using CsvHelper;
 using StockChatBot.Domain.Models;
 using StockChatBot.Infrastructure.ExternalServices.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -32,9 +33,17 @@ namespace StockChatBot.Infrastructure.ExternalServices.Services
                 {
                     using (var csvReader = new CsvReader(reader))
                     {
-                        csvReader.Configuration.Delimiter = ",";
-                        IEnumerable<StockQuote> stockQuotes = csvReader.GetRecords<StockQuote>();
-                        quoteValue = stockQuotes.FirstOrDefault()?.Open ?? string.Empty;
+                        try
+                        {
+
+                            csvReader.Configuration.Delimiter = ",";
+                            IEnumerable<StockQuote> stockQuotes = csvReader.GetRecords<StockQuote>();
+                            quoteValue = stockQuotes?.FirstOrDefault()?.Open ?? string.Empty;
+                        }
+                        catch (Exception)
+                        {
+                            quoteValue = string.Empty;
+                        }
                     }
                 }
             }

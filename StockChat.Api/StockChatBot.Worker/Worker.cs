@@ -50,7 +50,7 @@ namespace StockChatBot.Worker
 
             _hubConnection.On<IdentityUser, string>("ReceiveMessage", (user, message) =>
             {
-                this.ProcessMessage(user, message);
+                ProcessMessage(user, message);
             });
 
             _hubConnection.Closed += async (error) =>

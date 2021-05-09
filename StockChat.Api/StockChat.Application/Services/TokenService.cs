@@ -19,7 +19,7 @@ namespace StockChat.Application.Services
         public string GenerateBotToken()
         {
             var identityUser = new IdentityUser() { UserName = "ChatBot" };
-            return GenerateToken(identityUser, AuthConstants.BotAuthRole, DateTime.MaxValue);
+            return GenerateToken(identityUser, AuthConstants.BotAuthRole, DateTime.UtcNow.AddDays(10));
         }
 
         private string GenerateToken(IdentityUser identityUser, string roles, DateTime expires)
@@ -34,7 +34,7 @@ namespace StockChat.Application.Services
                     new Claim(ClaimTypes.Name, identityUser.UserName),
                     new Claim(ClaimTypes.Role, roles)
                 }),
-                Expires = DateTime.UtcNow.AddHours(2),
+                Expires = expires,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
