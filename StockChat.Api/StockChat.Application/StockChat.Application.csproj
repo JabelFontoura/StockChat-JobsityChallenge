@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StockChat.Domain\StockChat.Domain.csproj" />
+    <ProjectReference Include="..\StockChat.Infrastructure\StockChat.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

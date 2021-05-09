@@ -43,17 +43,26 @@ namespace StockChat.Application.Services
         public async Task<ResponseUserDto> Authenticate(RequestUserDto requestUserDto)
         {
             var identityUser = await _userManager.FindByEmailAsync(requestUserDto.Email);
-            if (identityUser != null && await _userManager.CheckPasswordAsync(identityUser, requestUserDto.Password))
-            {
-                var user = _mapper.Map<ResponseUserDto>(identityUser);
-                var roles = await _userManager.GetRolesAsync(identityUser);
-                var token = _tokenService.GenerateToken(identityUser, string.Join(", ", roles.ToArray()));
-                user.AccessToken = token;
 
-                return user;
-            }
+            if (identityUser == null && !await _userManager.CheckPasswordAsync(identityUser, requestUserDto.Password))
+                throw new Exception("Erro: User not found");
 
-            return null;
+            var user = _mapper.Map<ResponseUserDto>(identityUser);
+            var roles = await _userManager.GetRolesAsync(identityUser);
+            var token = _tokenService.GenerateToken(identityUser, string.Join(", ", roles.ToArray()));
+            user.AccessToken = token;
+
+            return user;
+        }
+
+        public async Task<IdentityUser> GetUserById(string id)
+        {
+            var identityUser = await _userManager.FindByIdAsync(id);
+
+            if (identityUser == null)
+                throw new Exception("Erro: User not found");
+
+            return identityUser;
         }
     }
 }

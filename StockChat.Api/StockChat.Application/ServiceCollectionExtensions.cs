@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using StockChat.Application.Interfaces;
 using StockChat.Application.Services;
 
@@ -11,6 +10,7 @@ namespace StockChat.Application
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddTransient<IMessageService, MessageService>();
 
             return services;
         }

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>dotnet-StockChatBot.Worker.Consumer-AED14998-F805-469D-B212-0E3C03E33AD6</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StockChat.Application\StockChat.Application.csproj" />
+    <ProjectReference Include="..\StockChatBot.Application\StockChatBot.Application.csproj" />
+    <ProjectReference Include="..\StockChatBot.Infrastructure\StockChatBot.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

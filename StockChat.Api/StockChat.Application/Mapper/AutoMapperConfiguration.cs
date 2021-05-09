@@ -6,9 +6,10 @@ namespace StockChat.Application.Mapper
     {
         public static MapperConfiguration RegisterMappings()
         {
-            return new MapperConfiguration(cfg =>
+            return new MapperConfiguration(options =>
             {
-                cfg.AddProfile(new UserProfile());
+                options.AddProfile(new UserProfile());
+                options.AddProfile(new MessageProfile());
             });
         }
     }

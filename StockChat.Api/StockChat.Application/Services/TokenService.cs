@@ -13,6 +13,17 @@ namespace StockChat.Application.Services
     {
         public string GenerateToken(IdentityUser identityUser, string roles)
         {
+            return GenerateToken(identityUser, roles, DateTime.UtcNow.AddHours(2));
+        }
+
+        public string GenerateBotToken()
+        {
+            var identityUser = new IdentityUser() { UserName = "ChatBot" };
+            return GenerateToken(identityUser, AuthConstants.BotAuthRole, DateTime.MaxValue);
+        }
+
+        private string GenerateToken(IdentityUser identityUser, string roles, DateTime expires)
+        {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(AuthConstants.Secret);
 

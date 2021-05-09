@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "StockChatBot.Worker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

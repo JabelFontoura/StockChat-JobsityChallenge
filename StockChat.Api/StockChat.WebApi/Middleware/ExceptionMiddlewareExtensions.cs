@@ -11,7 +11,7 @@ namespace StockChat.WebApi.Middleware
         public static void ConfigureExceptionHandler(this IApplicationBuilder app)
         {
             app.UseExceptionHandler(appError =>
-            { 
+            {
                 appError.Run(async context =>
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

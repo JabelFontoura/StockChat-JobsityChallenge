@@ -1,4 +1,5 @@
-﻿using StockChat.Application.Dtos.Request;
+﻿using Microsoft.AspNetCore.Identity;
+using StockChat.Application.Dtos.Request;
 using StockChat.Application.Dtos.Response;
 using System.Threading.Tasks;
 
@@ -8,5 +9,6 @@ namespace StockChat.Application.Interfaces
     {
         Task<ResponseUserDto> Register(RequestUserDto requestUserDto);
         Task<ResponseUserDto> Authenticate(RequestUserDto requestUserDto);
+        Task<IdentityUser> GetUserById(string id);
     }
 }

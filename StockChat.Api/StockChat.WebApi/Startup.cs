@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using StockChat.Application;
 using StockChat.Application.Mapper;
 using StockChat.Domain.Constants;
 using StockChat.Infrastructure;
 using StockChat.Infrastructure.Data;
+using StockChat.WebApi.Hubs;
 using StockChat.WebApi.Middleware;
 using System;
 using System.Text;
@@ -33,6 +35,7 @@ namespace StockChat.WebApi
             services.AddControllers();
             services.AddInfrastructure(Configuration);
             services.AddApplication();
+            services.AddSignalR();
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
@@ -40,7 +43,6 @@ namespace StockChat.WebApi
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<StocksChatDbContext>();
-
 
             var key = Encoding.ASCII.GetBytes(AuthConstants.Secret);
             services.AddAuthentication(options =>
@@ -59,6 +61,19 @@ namespace StockChat.WebApi
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
+                options.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        if (context.Request.Query.TryGetValue("token", out StringValues token)
+                        )
+                        {
+                            context.Token = token;
+                        }
+
+                        return Task.CompletedTask;
+                    }
+                };
             });
         }
 
@@ -69,9 +84,15 @@ namespace StockChat.WebApi
             else
                 app.ConfigureExceptionHandler();
 
-            app.UseHttpsRedirection();
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true)
+                .AllowCredentials());
 
             app.UseRouting();
+
+            //app.UseHttpsRedirection();
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -79,6 +100,7 @@ namespace StockChat.WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
 
             CreateRoles(serviceProvider).Wait();
@@ -87,7 +109,7 @@ namespace StockChat.WebApi
         private async Task CreateRoles(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            string[] rolesNames = { "User" };
+            string[] rolesNames = { AuthConstants.UserAuthRole, AuthConstants.BotAuthRole };
 
             IdentityResult result;
             foreach (var namesRole in rolesNames)
