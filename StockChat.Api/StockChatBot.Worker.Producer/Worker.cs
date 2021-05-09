@@ -30,7 +30,7 @@ namespace StockChatBot.Worker.Producer
             _botToken = _tokenService.GenerateBotToken();
 
             _hubConnection = new HubConnectionBuilder()
-                .WithUrl($"https://localhost:5001/chatHub/?token={_botToken}")
+                .WithUrl($"http://localhost:5000/chatHub/?token={_botToken}")
                 .Build();
             _logger = logger;
         }

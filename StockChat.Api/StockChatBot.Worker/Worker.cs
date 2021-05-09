@@ -45,7 +45,7 @@ namespace StockChatBot.Worker
         private async void StartHubConnection()
         {
             _hubConnection = new HubConnectionBuilder()
-                .WithUrl($"https://localhost:5001/chatHub/?token={_botToken}")
+                .WithUrl($"http://localhost:5000/chatHub/?token={_botToken}")
                 .Build();
 
             _hubConnection.On<IdentityUser, string>("ReceiveMessage", (user, message) =>
