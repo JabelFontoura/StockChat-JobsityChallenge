@@ -24,7 +24,7 @@ namespace StockChat.Application.Services
         }
         public async Task<ResponseMessageDto> SaveMessage(IdentityUser user, string messageText)
         {
-            if (!messageText.StartsWith("/stock"))
+            if (!messageText.StartsWith("/stock") && user.UserName != "ChatBot")
             {
                 var message = new Message(messageText, user);
 
@@ -41,7 +41,7 @@ namespace StockChat.Application.Services
         public async Task<IEnumerable<ResponseMessageDto>> GetLast50Messages()
         {
             var foundMessages = await _context.Messages
-                .OrderByDescending(x => x.Date)
+                .OrderBy(x => x.Date)
                 .Take(50)
                 .Include(x => x.User)
                 .ToListAsync();

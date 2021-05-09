@@ -40,6 +40,7 @@ namespace StockChat.WebApi
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true;
+                options.User.AllowedUserNameCharacters += " ";
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<StocksChatDbContext>();
