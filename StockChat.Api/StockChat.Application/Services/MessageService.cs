@@ -41,8 +41,9 @@ namespace StockChat.Application.Services
         public async Task<IEnumerable<ResponseMessageDto>> GetLast50Messages()
         {
             var foundMessages = await _context.Messages
-                .OrderBy(x => x.Date)
+                .OrderByDescending(x => x.Date)
                 .Take(50)
+                .Reverse()
                 .Include(x => x.User)
                 .ToListAsync();
 
